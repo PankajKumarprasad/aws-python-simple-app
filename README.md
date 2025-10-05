@@ -32,3 +32,26 @@ solution -  For those who are not able to update IAM role to the EC2 instance cr
 IAM --> Roles --> Create role --> AWS Service --> Use Case (select EC2) --> Next --> Permission Policies --> Select "AWSCodeDeployFullAccess"
 
 Now if you seach you will get the it role
+
+
+2. While creating deployment group you will get an error like "AWS CodeDeploy does not have the permissions required to assume the role arn:aws:iam::aws-account-id:role/codeDeploy_deployment_grp_role." 
+solution - go to role/codeDeploy_deployment_grp_role -> trust relationship and add below
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "codedeploy.amazonaws.com",
+                    "ecs.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+
+
+
