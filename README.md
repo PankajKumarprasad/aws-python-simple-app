@@ -20,3 +20,15 @@ env:
 5. Give permission 
 Privileged
 Enable this flag if you want to build Docker images or want your builds to get elevated privileges.
+
+******************************************************************************************************************************************************
+
+for the CD part
+--------------------
+
+1. After creating the EC2 instance you need to attach IAM role to it so codeDeploy can acess it. for attaching you go to ec2-instance-id -> action -> security -> Modify IAM role . but you are not able to find the role even after creating it
+solution -  For those who are not able to update IAM role to the EC2 instance created, pls follow below steps to solve the problem. 
+
+IAM --> Roles --> Create role --> AWS Service --> Use Case (select EC2) --> Next --> Permission Policies --> Select "AWSCodeDeployFullAccess"
+
+Now if you seach you will get the it role
